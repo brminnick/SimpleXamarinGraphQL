@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using GraphQL.Client.Http;
+using GraphQL.Common.Exceptions;
 using GraphQL.Common.Request;
+using GraphQL.Common.Response;
 using ModernHttpClient;
 using Polly;
 
@@ -43,9 +46,17 @@ namespace SimpleXamarinGraphQL
             return client;
         }
 
-        static Task<T> ExecutePollyFunction<T>(Func<Task<T>> action, int numRetries = 2)
+        static async Task<GraphQLResponse> ExecutePollyFunction(Func<Task<GraphQLResponse>> action, int numRetries = 2)
         {
-            return Policy.Handle<Exception>().WaitAndRetryAsync(numRetries, pollyRetryAttempt).ExecuteAsync(action);
+            var response = await Policy.Handle<Exception>().WaitAndRetryAsync(numRetries, pollyRetryAttempt).ExecuteAsync(action).ConfigureAwait(false);
+
+            if (response.Errors != null && response.Errors.Count() > 1)
+                throw new AggregateException(response.Errors.Select(x => new GraphQLException(x)));
+
+            if (response.Errors != null && response.Errors.Count() == 1)
+                throw new GraphQLException(response.Errors.First());
+
+            return response;
 
             TimeSpan pollyRetryAttempt(int attemptNumber) => TimeSpan.FromSeconds(Math.Pow(2, attemptNumber));
         }
