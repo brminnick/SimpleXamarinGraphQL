@@ -8,7 +8,7 @@ namespace SimpleXamarinGraphQL
     {
         #region Fields
         bool _isExecuting;
-        string _resultsLabelText, _loginEntryText;
+        string _resultsLabelText, _loginEntryText = "brminnick";
         #endregion
 
         #region Constructors
