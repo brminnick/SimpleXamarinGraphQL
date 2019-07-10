@@ -1,38 +1,67 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Threading.Tasks;
 using AsyncAwaitBestPractices.MVVM;
+using Xamarin.Forms;
 
 namespace SimpleXamarinGraphQL
 {
-    public class GraphQLViewModel : BaseViewModel
+    class GraphQLViewModel : BaseViewModel
     {
         #region Fields
-        string _resultsLabelText;
+        bool _isExecuting;
+        string _resultsLabelText, _loginEntryText;
         #endregion
 
+        #region Constructors
         public GraphQLViewModel()
         {
-            DownloadButtonCommand = new AsyncCommand(ExecuteDownloadButtonTapped);
+            DownloadButtonCommand = new AsyncCommand(() => ExecuteDownloadButtonTapped(LoginEntryText), _ => !IsExecuting);
+        }
+        #endregion
+
+        #region Properties
+        public AsyncCommand DownloadButtonCommand { get; }
+
+        public bool IsExecuting
+        {
+            get => _isExecuting;
+            set => SetProperty(ref _isExecuting, value, () => Device.BeginInvokeOnMainThread(DownloadButtonCommand.RaiseCanExecuteChanged));
         }
 
-        public ICommand DownloadButtonCommand { get; }
+        public string LoginEntryText
+        {
+            get => _loginEntryText;
+            set => SetProperty(ref _loginEntryText, value);
+        }
 
         public string ResultsLabelText
         {
             get => _resultsLabelText;
             set => SetProperty(ref _resultsLabelText, value);
         }
+        #endregion
 
-        Task ExecuteDownloadButtonTapped()
+        #region Methods
+        async Task ExecuteDownloadButtonTapped(string login)
         {
+            IsExecuting = true;
+
             ResultsLabelText = "Getting GitHub User Data...";
 
-            var gitHubUserResponse = await client.SendQueryAsync(graphQLRequest);
+            try
+            {
+                var gitHubUser = await GitHubGraphQLService.GetGitHubUser(login).ConfigureAwait(false);
 
-            User gitHubUser = gitHubUserResponse.GetDataFieldAs<User>("user");
-
-            ResultLabel.Text = gitHubUser.Name;
+                ResultsLabelText = gitHubUser.ToString();
+            }
+            catch (System.Exception e)
+            {
+                ResultsLabelText = e.Message;
+            }
+            finally
+            {
+                IsExecuting = false;
+            }
         }
+        #endregion
     }
 }

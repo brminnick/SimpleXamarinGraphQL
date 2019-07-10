@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Text;
 using Newtonsoft.Json;
 
 namespace SimpleXamarinGraphQL
 {
-    public class User
+    public class GitHubUser
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -16,6 +17,18 @@ namespace SimpleXamarinGraphQL
 
         [JsonProperty("followers")]
         public Followers Followers { get; set; }
+
+        public override string ToString()
+        {
+            var stringBuilder = new StringBuilder();
+
+            stringBuilder.AppendLine($"{nameof(Name)}: {Name}");
+            stringBuilder.AppendLine($"{nameof(Company)}: {Company}");
+            stringBuilder.AppendLine($"{nameof(CreatedAt)}: {CreatedAt}");
+            stringBuilder.Append($"Followers: {Followers.TotalCount}");
+
+            return stringBuilder.ToString();
+        }
     }
 
     public class Followers

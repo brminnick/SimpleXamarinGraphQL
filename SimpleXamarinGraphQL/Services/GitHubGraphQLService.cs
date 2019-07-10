@@ -18,7 +18,7 @@ namespace SimpleXamarinGraphQL
         #endregion
 
         #region Methods
-        public static async Task<User> GetGitHubUser(string login)
+        public static async Task<GitHubUser> GetGitHubUser(string login)
         {
             var graphQLRequest = new GraphQLRequest
             {
@@ -27,7 +27,7 @@ namespace SimpleXamarinGraphQL
 
             var gitHubUserResponse = await ExecutePollyFunction(() => Client.SendQueryAsync(graphQLRequest)).ConfigureAwait(false);
 
-            return gitHubUserResponse.GetDataFieldAs<User>(nameof(User).ToLower());
+            return gitHubUserResponse.GetDataFieldAs<GitHubUser>("user");
         }
 
         static GraphQLHttpClient CreateGitHubGraphQLClient()
@@ -37,7 +37,7 @@ namespace SimpleXamarinGraphQL
                 EndPoint = new Uri(GitHubConstants.GraphQLApiUrl),
                 HttpMessageHandler = new NativeMessageHandler()
             });
-            client.DefaultRequestHeaders.Add("Authorization", $"bearar {GitHubConstants.PersonalAccessToken}");
+            client.DefaultRequestHeaders.Add("Authorization", $"bearer {GitHubConstants.PersonalAccessToken}");
             client.DefaultRequestHeaders.Add("User-Agent", nameof(SimpleXamarinGraphQL));
 
             return client;

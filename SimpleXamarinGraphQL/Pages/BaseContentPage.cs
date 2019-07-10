@@ -2,7 +2,7 @@
 
 namespace SimpleXamarinGraphQL
 {
-    public abstract class BaseContentPage<T> : ContentPage where T : BaseViewModel, new()
+    abstract class BaseContentPage<T> : ContentPage where T : BaseViewModel, new()
     {
         protected BaseContentPage() => BindingContext = ViewModel;
 
