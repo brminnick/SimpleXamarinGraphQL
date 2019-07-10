@@ -15,9 +15,14 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
     <PackageReference Include="GraphQL.Client" Version="2.0.0-alpha.3" />
     <PackageReference Include="modernhttpclient" Version="2.4.2" />
+    <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="3.0.0-pre3" />
+    <PackageReference Include="Polly" Version="7.1.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Models\" />
+    <Folder Include="Services\" />
+    <Folder Include="Constants\" />
   </ItemGroup>
 </Project>
