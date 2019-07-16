@@ -5,7 +5,7 @@ An iOS and Android app built in Xamarin.Forms demonstrating how to interact with
 
 This app was created to accompany my talk on Xamarin + GraphQL.
 
-The session was recorded delivered at [Xamarin Developer Summit 2019](https://www.codetraveler.io/xamdevsummit-graphql/) and can be found here:
+The session was recorded at [Xamarin Developer Summit 2019](https://www.codetraveler.io/xamdevsummit-graphql/) and can be found here:
 https://youtu.be/t1cQsenAmNo?t=18575
 
 [![Xamarin + GraphQL Video](https://user-images.githubusercontent.com/13558917/61256668-6a8f1780-a722-11e9-97ad-8188ec6eab8f.png)](https://youtu.be/t1cQsenAmNo?t=18575)
