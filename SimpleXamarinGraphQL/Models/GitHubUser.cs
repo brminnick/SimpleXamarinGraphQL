@@ -6,17 +6,22 @@ namespace SimpleXamarinGraphQL
 {
     public class GitHubUser
     {
-        [JsonProperty("name")]
+        public GitHubUser()
+        {
+
+        }
+
+        [JsonConstructor]
+        public GitHubUser(string name, string company, DateTimeOffset createdAt, Followers followers) =>
+            (Name, Company, CreatedAt, FollowersCount) = (name, company, createdAt, followers.TotalCount);
+
         public string Name { get; set; }
 
-        [JsonProperty("company")]
         public string Company { get; set; }
 
-        [JsonProperty("createdAt")]
         public DateTimeOffset CreatedAt { get; set; }
 
-        [JsonProperty("followers")]
-        public Followers Followers { get; set; }
+        public long FollowersCount { get; set; }
 
         public override string ToString()
         {
@@ -25,15 +30,9 @@ namespace SimpleXamarinGraphQL
             stringBuilder.AppendLine($"{nameof(Name)}: {Name}");
             stringBuilder.AppendLine($"{nameof(Company)}: {Company}");
             stringBuilder.AppendLine($"{nameof(CreatedAt)}: {CreatedAt.ToString("d")}");
-            stringBuilder.Append($"Followers: {Followers.TotalCount}");
+            stringBuilder.Append($"{nameof(FollowersCount)}: {FollowersCount}");
 
             return stringBuilder.ToString();
         }
-    }
-
-    public class Followers
-    {
-        [JsonProperty("totalCount")]
-        public long TotalCount { get; set; }
     }
 }
