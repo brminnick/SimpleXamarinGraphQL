@@ -8,6 +8,7 @@ namespace SimpleXamarinGraphQL
         {
             var loginEntry = new Entry
             {
+                ClearButtonVisibility = ClearButtonVisibility.WhileEditing,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Placeholder = "GitHub Username",
                 HorizontalTextAlignment = TextAlignment.Start,
@@ -15,8 +16,8 @@ namespace SimpleXamarinGraphQL
                 PlaceholderColor = Color.FromHex("749FA8"),
                 TextColor = Device.RuntimePlatform is Device.Android ? Color.White : Color.Black
             };
-            loginEntry.SetBinding(Entry.TextProperty, nameof(ViewModel.LoginEntryText));
-            loginEntry.SetBinding(Entry.ReturnCommandProperty, nameof(ViewModel.DownloadButtonCommand));
+            loginEntry.SetBinding(Entry.TextProperty, nameof(GraphQLViewModel.LoginEntryText));
+            loginEntry.SetBinding(Entry.ReturnCommandProperty, nameof(GraphQLViewModel.DownloadButtonCommand));
 
             var downloadButton = new Button
             {
@@ -29,11 +30,11 @@ namespace SimpleXamarinGraphQL
                 BorderWidth = 1,
                 Text = "Get User Info"
             };
-            downloadButton.SetBinding(Button.CommandProperty, nameof(ViewModel.DownloadButtonCommand));
+            downloadButton.SetBinding(Button.CommandProperty, nameof(GraphQLViewModel.DownloadButtonCommand));
 
             var activityIndicator = new ActivityIndicator { Color = Color.White };
-            activityIndicator.SetBinding(IsVisibleProperty, nameof(ViewModel.IsExecuting));
-            activityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(ViewModel.IsExecuting));
+            activityIndicator.SetBinding(IsVisibleProperty, nameof(GraphQLViewModel.IsExecuting));
+            activityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(GraphQLViewModel.IsExecuting));
 
             var resultsLabel = new Label
             {
@@ -44,7 +45,7 @@ namespace SimpleXamarinGraphQL
                 VerticalTextAlignment = TextAlignment.Start,
                 TextColor = Color.White
             };
-            resultsLabel.SetBinding(Label.TextProperty, nameof(ViewModel.ResultsLabelText));
+            resultsLabel.SetBinding(Label.TextProperty, nameof(GraphQLViewModel.ResultsLabelText));
 
             var grid = new Grid
             {

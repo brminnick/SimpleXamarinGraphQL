@@ -6,19 +6,14 @@ namespace SimpleXamarinGraphQL
 {
     class GraphQLViewModel : BaseViewModel
     {
-        #region Fields
         bool _isExecuting;
         string _resultsLabelText, _loginEntryText = "brminnick";
-        #endregion
 
-        #region Constructors
         public GraphQLViewModel()
         {
             DownloadButtonCommand = new AsyncCommand(() => ExecuteDownloadButtonTapped(LoginEntryText), _ => !IsExecuting);
         }
-        #endregion
 
-        #region Properties
         public AsyncCommand DownloadButtonCommand { get; }
 
         public bool IsExecuting
@@ -38,9 +33,7 @@ namespace SimpleXamarinGraphQL
             get => _resultsLabelText;
             set => SetProperty(ref _resultsLabelText, value);
         }
-        #endregion
 
-        #region Methods
         async Task ExecuteDownloadButtonTapped(string login)
         {
             IsExecuting = true;
@@ -62,6 +55,5 @@ namespace SimpleXamarinGraphQL
                 IsExecuting = false;
             }
         }
-        #endregion
     }
 }

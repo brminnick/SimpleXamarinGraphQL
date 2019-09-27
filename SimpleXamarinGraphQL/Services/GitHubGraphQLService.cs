@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using GraphQL.Client.Http;
 using GraphQL.Common.Exceptions;
@@ -12,15 +13,10 @@ namespace SimpleXamarinGraphQL
 {
     public static class GitHubGraphQLService
     {
-        #region Constant Fields
         static readonly Lazy<GraphQLHttpClient> _client = new Lazy<GraphQLHttpClient>(CreateGitHubGraphQLClient);
-        #endregion
 
-        #region Properties
         static GraphQLHttpClient Client => _client.Value;
-        #endregion
 
-        #region Methods
         public static async Task<GitHubUser> GetGitHubUser(string login)
         {
             var graphQLRequest = new GraphQLRequest
@@ -40,8 +36,9 @@ namespace SimpleXamarinGraphQL
                 EndPoint = new Uri(GitHubConstants.GraphQLApiUrl),
                 HttpMessageHandler = new NativeMessageHandler()
             });
-            client.DefaultRequestHeaders.Add("Authorization", $"bearer {GitHubConstants.PersonalAccessToken}");
-            client.DefaultRequestHeaders.Add("User-Agent", nameof(SimpleXamarinGraphQL));
+
+            client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(new ProductHeaderValue(nameof(SimpleXamarinGraphQL))));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", GitHubConstants.PersonalAccessToken);
 
             return client;
         }
@@ -53,13 +50,12 @@ namespace SimpleXamarinGraphQL
             if (response.Errors != null && response.Errors.Count() > 1)
                 throw new AggregateException(response.Errors.Select(x => new GraphQLException(x)));
 
-            if (response.Errors != null && response.Errors.Count() == 1)
+            if (response.Errors != null && response.Errors.Count() is 1)
                 throw new GraphQLException(response.Errors.First());
 
             return response;
 
             TimeSpan pollyRetryAttempt(int attemptNumber) => TimeSpan.FromSeconds(Math.Pow(2, attemptNumber));
         }
-        #endregion
     }
 }
