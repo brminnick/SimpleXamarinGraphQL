@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AsyncAwaitBestPractices.MVVM;
+using SimpleXamarinGraphQL.Services;
 using Xamarin.Forms;
 
 namespace SimpleXamarinGraphQL
@@ -8,9 +9,11 @@ namespace SimpleXamarinGraphQL
     {
         bool _isExecuting;
         string _resultsLabelText, _loginEntryText = "brminnick";
+        IGitHubClient _gitHubClient;
 
         public GraphQLViewModel()
         {
+            _gitHubClient = GitHubClientFactory.Create();
             DownloadButtonCommand = new AsyncCommand(() => ExecuteDownloadButtonTapped(LoginEntryText), _ => !IsExecuting);
         }
 
@@ -42,9 +45,12 @@ namespace SimpleXamarinGraphQL
 
             try
             {
-                var gitHubUser = await GitHubGraphQLService.GetGitHubUser(login).ConfigureAwait(false);
+                var response = await _gitHubClient.GetUserAsync(login).ConfigureAwait(false);
+                response.EnsureNoErrors();
 
-                ResultsLabelText = gitHubUser.ToString();
+                var gitHubUser = response.Data.User;
+
+                ResultsLabelText = gitHubUser.Name.ToString();
             }
             catch (System.Exception e)
             {
