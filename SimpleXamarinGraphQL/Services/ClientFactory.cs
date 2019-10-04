@@ -1,8 +1,6 @@
 using System;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using Microsoft.Extensions.DependencyInjection;
-using StrawberryShake.Http.Pipelines;
 
 namespace SimpleXamarinGraphQL.Services
 {
@@ -18,6 +16,9 @@ namespace SimpleXamarinGraphQL.Services
                 c.BaseAddress = new Uri(GitHubConstants.GraphQLApiUrl);
                 c.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
                     "bearer", GitHubConstants.PersonalAccessToken);
+                c.DefaultRequestHeaders.UserAgent.Add(
+                    new ProductInfoHeaderValue(
+                        new ProductHeaderValue("Xamarin.Sample", "1.0.0")));
             });
             return serviceCollection.BuildServiceProvider().GetRequiredService<IGitHubClient>();
         }
