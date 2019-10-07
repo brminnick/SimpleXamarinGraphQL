@@ -4,24 +4,19 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
   </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>pdbonly</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.3.0.819712-pre2" />
     <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="3.1.0" />
     <PackageReference Include="Polly" Version="7.1.1" />
     <PackageReference Include="modernhttpclient-updated" Version="3.4.2" />
-    <PackageReference Include="StrawberryShake" Version="11.0.0-preview.30" />
+    <PackageReference Include="StrawberryShake" Version="11.0.0-preview.35" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="Models\" />
-    <Folder Include="Services\" />
-    <Folder Include="Constants\" />
   </ItemGroup>
 </Project>

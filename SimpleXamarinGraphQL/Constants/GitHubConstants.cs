@@ -2,8 +2,8 @@
 {
     public static class GitHubConstants
     {
-
-        public const string PersonalAccessToken = "";
+        // add your access token here!
+        public const string PersonalAccessToken = ;
 
         public const string GraphQLApiUrl = "https://api.github.com/graphql";
     }
