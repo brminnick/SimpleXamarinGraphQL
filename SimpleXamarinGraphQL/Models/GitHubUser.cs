@@ -1,27 +1,20 @@
 ﻿using System;
 using System.Text;
-using Newtonsoft.Json;
 
 namespace SimpleXamarinGraphQL
 {
     public class GitHubUser
     {
-        public GitHubUser()
-        {
-
-        }
-
-        [JsonConstructor]
         public GitHubUser(string name, string company, DateTimeOffset createdAt, Followers followers) =>
             (Name, Company, CreatedAt, FollowersCount) = (name, company, createdAt, followers.TotalCount);
 
-        public string Name { get; set; }
+        public string Name { get; }
 
-        public string Company { get; set; }
+        public string Company { get; }
 
-        public DateTimeOffset CreatedAt { get; set; }
+        public DateTimeOffset CreatedAt { get; }
 
-        public long FollowersCount { get; set; }
+        public long FollowersCount { get; }
 
         public override string ToString()
         {
