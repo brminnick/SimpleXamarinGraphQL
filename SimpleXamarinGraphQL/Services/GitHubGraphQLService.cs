@@ -21,7 +21,7 @@ namespace SimpleXamarinGraphQL
         {
             var graphQLRequest = new GraphQLRequest
             {
-                Query = "query { user(login: " + login + "){ name, company, createdAt, followers{ totalCount }}}"
+                Query = "query { user(login: \"" + login + "\"){ name, company, createdAt, followers{ totalCount }}}"
             };
 
             var gitHubUserResponse = await ExecutePollyFunction(() => Client.SendQueryAsync(graphQLRequest)).ConfigureAwait(false);
