@@ -8,12 +8,13 @@ namespace SimpleXamarinGraphQL
         {
             var loginEntry = new Entry
             {
+                BackgroundColor = Device.RuntimePlatform is Device.iOS ? Color.White : default,
                 ClearButtonVisibility = ClearButtonVisibility.WhileEditing,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Placeholder = "GitHub Username",
                 HorizontalTextAlignment = TextAlignment.Start,
                 ReturnType = ReturnType.Go,
-                PlaceholderColor = Color.FromHex("749FA8"),
+                PlaceholderColor = Color.LightGray,
                 TextColor = Device.RuntimePlatform is Device.Android ? Color.White : Color.Black
             };
             loginEntry.SetBinding(Entry.TextProperty, nameof(GraphQLViewModel.LoginEntryText));
