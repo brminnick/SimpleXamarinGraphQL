@@ -24,7 +24,7 @@ namespace SimpleXamarinGraphQL
                 Query = "query { user(login: \"" + login + "\"){ name, company, createdAt, followers{ totalCount }}}"
             };
 
-            var gitHubUserResponse = await ExecutePollyFunction(() => Client.SendQueryAsync(graphQLRequest)).ConfigureAwait(false);
+            var gitHubUserResponse = await AttemptAndRetry(() => Client.SendQueryAsync(graphQLRequest)).ConfigureAwait(false);
 
             return gitHubUserResponse.GetDataFieldAs<GitHubUser>("user");
         }
@@ -43,7 +43,7 @@ namespace SimpleXamarinGraphQL
             return client;
         }
 
-        static async Task<GraphQLResponse> ExecutePollyFunction(Func<Task<GraphQLResponse>> action, int numRetries = 2)
+        static async Task<GraphQLResponse> AttemptAndRetry(Func<Task<GraphQLResponse>> action, int numRetries = 2)
         {
             var response = await Policy.Handle<Exception>().WaitAndRetryAsync(numRetries, pollyRetryAttempt).ExecuteAsync(action).ConfigureAwait(false);
 
