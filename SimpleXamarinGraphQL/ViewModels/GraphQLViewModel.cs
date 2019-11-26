@@ -7,7 +7,8 @@ namespace SimpleXamarinGraphQL
     class GraphQLViewModel : BaseViewModel
     {
         bool _isExecuting;
-        string _resultsLabelText, _loginEntryText = "brminnick";
+        string _resultsLabelText = string.Empty,
+                _loginEntryText = "brminnick";
 
         public GraphQLViewModel()
         {

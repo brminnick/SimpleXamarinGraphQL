@@ -4,7 +4,8 @@ namespace SimpleXamarinGraphQL
 {
     public class Followers
     {
-        [JsonProperty("totalCount")]
-        public long TotalCount { get; set; }
+        public Followers(long totalCount) => TotalCount = totalCount;
+
+        public long TotalCount { get; }
     }
 }
