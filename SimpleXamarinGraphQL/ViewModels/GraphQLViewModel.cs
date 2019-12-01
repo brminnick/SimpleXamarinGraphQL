@@ -15,7 +15,7 @@ namespace SimpleXamarinGraphQL
             DownloadButtonCommand = new AsyncCommand(() => ExecuteDownloadButtonTapped(LoginEntryText), _ => !IsExecuting);
         }
 
-        public AsyncCommand DownloadButtonCommand { get; }
+        public IAsyncCommand DownloadButtonCommand { get; }
 
         public bool IsExecuting
         {
