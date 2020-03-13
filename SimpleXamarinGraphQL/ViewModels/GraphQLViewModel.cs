@@ -20,7 +20,7 @@ namespace SimpleXamarinGraphQL
         public bool IsExecuting
         {
             get => _isExecuting;
-            set => SetProperty(ref _isExecuting, value, () => Device.BeginInvokeOnMainThread(DownloadButtonCommand.RaiseCanExecuteChanged));
+            set => SetProperty(ref _isExecuting, value, () => Xamarin.Essentials.MainThread.BeginInvokeOnMainThread(DownloadButtonCommand.RaiseCanExecuteChanged));
         }
 
         public string LoginEntryText
