@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using GraphQL;
 using GraphQL.Client.Abstractions;
 using GraphQL.Client.Http;
+using GraphQL.Client.Serializer.Newtonsoft;
 using ModernHttpClient;
 using Polly;
 
@@ -37,11 +38,11 @@ namespace SimpleXamarinGraphQL
                 HttpMessageHandler = new NativeMessageHandler(),
             };
 
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(new ProductHeaderValue(nameof(SimpleXamarinGraphQL))));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", GitHubConstants.PersonalAccessToken);
+            var client = new GraphQLHttpClient(graphQLOptions, new NewtonsoftJsonSerializer());
+            client.HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(new ProductHeaderValue(nameof(SimpleXamarinGraphQL))));
+            client.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", GitHubConstants.PersonalAccessToken);
 
-            return new GraphQLHttpClient(graphQLOptions, client);
+            return client;
         }
 
         static async Task<T> AttemptAndRetry<T>(Func<Task<GraphQLResponse<T>>> action, int numRetries = 2)

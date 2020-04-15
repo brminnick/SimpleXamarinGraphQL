@@ -10,12 +10,13 @@
         <DebugSymbols>true</DebugSymbols>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Xamarin.Forms" Version="4.6.0.379-pre1" />
-        <PackageReference Include="GraphQL.Client" Version="2.1.2" />
-        <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="4.1.0" />
+        <PackageReference Include="Xamarin.Forms" Version="4.6.0.616-pre4" />
+        <PackageReference Include="GraphQL.Client" Version="3.0.1" />
+        <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="4.1.1-pre1" />
         <PackageReference Include="Polly" Version="7.2.0" />
         <PackageReference Include="modernhttpclient-updated" Version="3.4.3" />
-        <PackageReference Include="Xamarin.Essentials" Version="1.5.1" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />
+        <PackageReference Include="GraphQL.Client.Serializer.Newtonsoft" Version="3.0.1" />
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Pages\" />
