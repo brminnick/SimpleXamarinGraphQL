@@ -28,11 +28,14 @@ namespace SimpleXamarinGraphQL
                     new LoginEntry().Row(Row.LoginEntry)
                         .Bind(Entry.TextProperty, nameof(GraphQLViewModel.LoginEntryText))
                         .Bind(Entry.ReturnCommandProperty, nameof(GraphQLViewModel.DownloadButtonCommand)),
+
                     new DownloadButton().Row(Row.DownloadButton)
                         .Bind(Button.CommandProperty, nameof(GraphQLViewModel.DownloadButtonCommand)),
+
                     new ActivityIndicator { Color = Color.White }.Row(Row.ActivityIndicator)
                         .Bind(IsVisibleProperty, nameof(GraphQLViewModel.IsExecuting))
                         .Bind(ActivityIndicator.IsRunningProperty, nameof(GraphQLViewModel.IsExecuting)),
+
                     new ResultsLabel().Row(Row.ResultsLabel)
                         .Bind(Label.TextProperty, nameof(GraphQLViewModel.ResultsLabelText))
                 }

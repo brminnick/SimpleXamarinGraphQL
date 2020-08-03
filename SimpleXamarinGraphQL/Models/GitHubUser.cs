@@ -22,7 +22,7 @@ namespace SimpleXamarinGraphQL
 
             stringBuilder.AppendLine($"{nameof(Name)}: {Name}");
             stringBuilder.AppendLine($"{nameof(Company)}: {Company}");
-            stringBuilder.AppendLine($"{nameof(CreatedAt)}: {CreatedAt.ToString("d")}");
+            stringBuilder.AppendLine($"{nameof(CreatedAt)}: {CreatedAt:d}");
             stringBuilder.Append($"{nameof(FollowersCount)}: {FollowersCount}");
 
             return stringBuilder.ToString();
