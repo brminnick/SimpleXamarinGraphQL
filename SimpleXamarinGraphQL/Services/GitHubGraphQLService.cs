@@ -50,10 +50,9 @@ namespace SimpleXamarinGraphQL
             var response = await Policy.Handle<Exception>().WaitAndRetryAsync(numRetries, pollyRetryAttempt).ExecuteAsync(action).ConfigureAwait(false);
 
             if (response.Errors != null && response.Errors.Count() > 1)
-                throw new AggregateException(response.Errors.Select(x => new Exception(x.ToString())));
-
-            if (response.Errors != null && response.Errors.Count() is 1)
-                throw new Exception(response.Errors.First().ToString());
+                throw new AggregateException(response.Errors.Select(x => new Exception(x.Message)));
+            else if (response.Errors != null && response.Errors.Any())
+                throw new Exception(response.Errors.First().Message.ToString());
 
             return response.Data;
 
