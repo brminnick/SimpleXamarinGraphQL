@@ -10,7 +10,7 @@
         <DebugSymbols>true</DebugSymbols>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Xamarin.Forms" Version="4.8.0.1238-pre3" />
+        <PackageReference Include="Xamarin.Forms" Version="4.8.0.1269" />
         <PackageReference Include="GraphQL.Client" Version="3.1.3" />
         <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="4.3.0-pre1" />
         <PackageReference Include="Polly" Version="7.2.1" />
