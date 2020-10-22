@@ -1,5 +1,5 @@
 # SimpleXamarinGraphQL
-An iOS and Android app built in Xamarin.Forms demonstrating how to interact with GitHub's GraphQL API from a [Xamarin.Forms](https://visualstudio.microsoft.com/xamarin?WT.mc_id=simplexamaringraphql-github-bramin) app using [GraphQL.Client](https://www.nuget.org/packages/GraphQL.Client/).
+An iOS and Android app built in Xamarin.Forms demonstrating how to interact with GitHub's GraphQL API from a [Xamarin.Forms](https://visualstudio.microsoft.com/xamarin?WT.mc_id=mobile-0000-bramin) app using [GraphQL.Client](https://www.nuget.org/packages/GraphQL.Client/).
 
 ## Xamarin + GraphQL Recording
 
