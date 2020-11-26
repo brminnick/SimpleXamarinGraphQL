@@ -7,8 +7,6 @@ namespace SimpleXamarinGraphQL
     {
         public App()
         {
-            Xamarin.Forms.Device.SetFlags(new[] { "Markup_Experimental" });
-
             var navigationPage = new Xamarin.Forms.NavigationPage(new GraphQLPage())
             {
                 BarBackgroundColor = Xamarin.Forms.Color.FromHex("#3498db"),
