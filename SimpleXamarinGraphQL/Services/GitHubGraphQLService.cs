@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Linq;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using GraphQL;
-using GraphQL.Client.Abstractions;
 using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
 using ModernHttpClient;
@@ -14,7 +12,7 @@ namespace SimpleXamarinGraphQL
 {
     public static class GitHubGraphQLService
     {
-        static readonly Lazy<GraphQLHttpClient> _client = new Lazy<GraphQLHttpClient>(CreateGitHubGraphQLClient);
+        static readonly Lazy<GraphQLHttpClient> _client = new(CreateGitHubGraphQLClient);
 
         static GraphQLHttpClient Client => _client.Value;
 
