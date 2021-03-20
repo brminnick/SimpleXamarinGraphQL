@@ -61,12 +61,12 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
-        <PackageReference Include="GraphQL.Client" Version="3.2.2" />
         <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="5.0.2" />
         <PackageReference Include="Polly" Version="7.2.1" />
         <PackageReference Include="modernhttpclient-updated" Version="3.4.3" />
         <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
-        <PackageReference Include="GraphQL.Client.Serializer.Newtonsoft" Version="3.2.2" />
+        <PackageReference Include="StrawberryShake.Transport.Http" Version="11.1.0-preview.85" />
+        <PackageReference Include="StrawberryShake.CodeGeneration.CSharp.Analyzers" Version="11.1.0-preview.85" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="MainActivity.cs" />
