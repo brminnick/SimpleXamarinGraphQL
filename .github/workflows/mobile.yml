@@ -19,7 +19,7 @@ jobs:
         run: |
           nuget restore
 
-      - name: Inject Token:
+      - name: Inject Token
         env:
           TOKEN: ${{ secrets.TOKEN }}
         
