@@ -1,0 +1,25 @@
+name: Mobile
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches: 
+      - "*"
+
+jobs:
+    Build_Android:
+      runs-on: macos-latest
+
+      steps:
+      - uses: actions/checkout@v1
+
+      - name: Restore NuGet 
+        run: |
+          nuget restore
+          
+      - name: Build Android App
+        run: |                    
+          mono /Applications/Visual\ studio.app/Contents/Resources/lib/monodevelop/bin/MSBuild/Current/bin/MSBuild.dll ./SimpleXamarinGraphQL.Android/SimpleXamarinGraphQL.Android.csproj /verbosity:normal /p:Configuration=Release     
+        
