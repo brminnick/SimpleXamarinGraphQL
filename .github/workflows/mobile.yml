@@ -18,6 +18,15 @@ jobs:
       - name: Restore NuGet 
         run: |
           nuget restore
+
+      - name: Inject Token:
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+        
+        run: |
+          GitHubConstantsFile='find . -name AzureConstants.cs | head -1'
+          sed -i '' "s/PersonalAccessToken = \"\"/PersonalAccessToken = \"$TOKEN\"/g" "$GitHubConstantsFile"
+          sed -i '' "s/#error Missing Token/\/\/##error Missing Token/g" "$GitHubConstantsFile"          
           
       - name: Build Android App
         run: |                    
