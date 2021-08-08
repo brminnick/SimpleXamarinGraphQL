@@ -24,7 +24,9 @@ jobs:
           TOKEN: ${{ secrets.TOKEN }}
         
         run: |
-          GitHubConstantsFile='find . -name GitHubConstants.cs | head -1'
+          GitHubConstantsFile=`find . -name GitHubConstants.cs | head -1`
+          echo GitHubConstantsFile = $GitHubConstantsFile
+
           sed -i '' "s/PersonalAccessToken = \"\"/PersonalAccessToken = \"$TOKEN\"/g" "$GitHubConstantsFile"
           sed -i '' "s/#error Missing Token/\/\/##error Missing Token/g" "$GitHubConstantsFile"          
           
