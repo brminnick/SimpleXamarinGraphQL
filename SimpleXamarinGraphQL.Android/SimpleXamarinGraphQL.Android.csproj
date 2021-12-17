@@ -65,7 +65,7 @@
         <PackageReference Include="Polly" Version="7.2.2" />
         <PackageReference Include="modernhttpclient-updated" Version="3.4.3" />
         <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
-        <PackageReference Include="GraphQL.Client.Serializer.Newtonsoft" Version="4.0.1" />
+        <PackageReference Include="GraphQL.Client.Serializer.Newtonsoft" Version="4.0.2" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="MainActivity.cs" />
