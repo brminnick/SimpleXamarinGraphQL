@@ -60,7 +60,7 @@
         <Reference Include="System.Numerics.Vectors" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
         <PackageReference Include="GraphQL.Client" Version="4.0.2" />
         <PackageReference Include="Polly" Version="7.2.3" />
         <PackageReference Include="modernhttpclient-updated" Version="3.4.3" />
@@ -106,6 +106,7 @@
         <ProjectReference Include="..\SimpleXamarinGraphQL\SimpleXamarinGraphQL.csproj">
             <Project>{3850CB98-5F7D-4A57-946E-A244B6686397}</Project>
             <Name>SimpleXamarinGraphQL</Name>
+            <ReferenceSourceTarget></ReferenceSourceTarget>
         </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
