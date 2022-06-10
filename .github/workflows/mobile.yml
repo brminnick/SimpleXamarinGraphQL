@@ -32,5 +32,5 @@ jobs:
           
       - name: Build Android App
         run: |                    
-          mono /Applications/Visual\ studio.app/Contents/Resources/lib/monodevelop/bin/MSBuild/Current/bin/MSBuild.dll ./SimpleXamarinGraphQL.Android/SimpleXamarinGraphQL.Android.csproj /verbosity:normal /p:Configuration=Release     
+          msbuild ./SimpleXamarinGraphQL.Android/SimpleXamarinGraphQL.Android.csproj /verbosity:normal /p:Configuration=Release     
         
