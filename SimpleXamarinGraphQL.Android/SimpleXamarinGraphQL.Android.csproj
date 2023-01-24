@@ -61,7 +61,7 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2545" />
-        <PackageReference Include="GraphQL.Client" Version="5.1.0" />
+        <PackageReference Include="GraphQL.Client" Version="5.1.1" />
         <PackageReference Include="Polly" Version="7.2.3" />
         <PackageReference Include="modernhttpclient-updated" Version="3.4.3" />
         <PackageReference Include="Xamarin.Essentials" Version="1.7.4" />
